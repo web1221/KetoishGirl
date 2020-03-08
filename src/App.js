@@ -1,85 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
-import firebase from './Firebase';
+import { Switch, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import LandingPage from './components/LandingPage';
+import RaceList from './components/RaceList';
+import Footer from './components/Footer';
+import EditRace from './components/EditRace';
+import CreateRace from './components/CreateRace';
+import ShowRace from './components/ShowRace';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.ref = firebase.firestore().collection('races');
-    this.unsubscribe = null;
-    this.state = {
-      races: []
-    };
-  }
-
-  onCollectionUpdate = (querySnapshot) => {
-    const races = [];
-    querySnapshot.forEach((doc) => {
-      const { name, mission, course, schedule, timing, address, restrooms } = doc.data();
-      races.push({
-        key: doc.id,
-        doc, // DocumentSnapshot
-        name,
-        mission,
-        course,
-        schedule,
-        timing,
-        address,
-        restrooms
-      });
-    });
-    this.setState({
-      races
-   });
-  }
-
-  componentDidMount() {
-    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-  }
-
-  render() {
+function App(){
     return (
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              RACE LIST
-            </h3>
-          </div>
-          <div class="panel-body">
-            <h4><Link to="/createrace">Add Race</Link></h4>
-            <table class="table table-stripe">
-              <thead>
-                <tr>
-                  <th>Race Name</th>
-                  <th>Pay it Forward Mission</th>
-                  <th>Course Description</th>
-                  <th>Race Day Schedule</th>
-                  <th>Timing Information</th>
-                  <th>Event Address</th>
-                  <th>Restrooms</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.races.map(race =>
-                  <tr>
-                    <td><Link to={`/showrace/${race.key}`}>{race.name}</Link></td>
-                    <td>{race.mission}</td>
-                    <td>{race.course}</td>
-                    <td>{race.schedule}</td>
-                    <td>{race.timing}</td>
-                    <td>{race.address}</td>
-                    <td>{race.restrooms}</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div>
+      <Navbar />
+      <Switch>
+      <Route exact path='/' component={LandingPage} />
+      <Route path='/editrace/:id' component={EditRace} />
+      <Route path='/createrace' component={CreateRace} />
+      <Route path='/showrace/:id' component={ShowRace} />
+      <Route exact path='/racelist' component={RaceList} />
+      </Switch>
+      <Footer />
       </div>
     );
   }
-}
 
 export default App;

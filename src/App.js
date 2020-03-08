@@ -65,7 +65,6 @@ class App extends Component {
                 {this.state.races.map(race =>
                   <tr>
                     <td><Link to={`/showrace/${race.key}`}>{race.name}</Link></td>
-                    <td>{race.name}</td>
                     <td>{race.mission}</td>
                     <td>{race.course}</td>
                     <td>{race.schedule}</td>

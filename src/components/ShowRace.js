@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 
-class Show extends Component {
+class ShowRace extends Component {
 
   constructor(props) {
     super(props);
@@ -70,4 +70,4 @@ class Show extends Component {
   }
 }
 
-export default Show;
+export default ShowRace;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 
-class Edit extends Component {
+class EditRace extends Component {
 
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ class Edit extends Component {
       timing: '',
       restrooms: ''
     };
-  } 
+  }
 
   componentDidMount() {
     const ref = firebase.firestore().collection('races').doc(this.props.match.params.id);
@@ -123,4 +123,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default EditRace;

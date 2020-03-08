@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import firebase from '../Firebase';
 import { Link } from 'react-router-dom';
 
-class Create extends Component {
+class CreateRace extends Component {
 
   constructor() {
     super();
@@ -43,17 +43,18 @@ class Create extends Component {
         course: '',
         schedule: '',
         timing: '',
+        address: '',
         restrooms: ''
       });
       this.props.history.push("/")
     })
     .catch((error) => {
-      console.error("Error adding document: ", error);
+      console.error("Error adding race: ", error);
     });
   }
 
   render() {
-    const { title, description, author } = this.state;
+    const { name, mission, course, schedule, timing, address, restrooms } = this.state;
     return (
       <div class="container">
         <div class="panel panel-default">
@@ -71,7 +72,7 @@ class Create extends Component {
               </div>
               <div class="form-group">
                 <label for="mission">Pay it Forward Mission:</label>
-                <input type="text" class="form-control" mission="mission" value={mission} onChange={this.onChange} placeholder="Pay it Forward Mission" />
+                <input type="text" class="form-control" name="mission" value={mission} onChange={this.onChange} placeholder="Pay it Forward Mission" />
               </div>
               <div class="form-group">
                 <label for="description">Course Description:</label>
@@ -86,6 +87,10 @@ class Create extends Component {
                 <textArea class="form-control" name="timing" onChange={this.onChange} placeholder="Timing Information" cols="80" rows="3">{timing}</textArea>
               </div>
               <div class="form-group">
+                <label for="address">Event Address:</label>
+                <textArea class="form-control" name="address" onChange={this.onChange} placeholder="Event Address" cols="80" rows="3">{address}</textArea>
+              </div>
+              <div class="form-group">
                 <label for="restrooms">Restrooms:</label>
                 <textArea class="form-control" name="restrooms" onChange={this.onChange} placeholder="Restrooms" cols="80" rows="3">{restrooms}</textArea>
               </div>
@@ -98,4 +103,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default CreateRace;

@@ -48,7 +48,7 @@ class App extends Component {
             </h3>
           </div>
           <div class="panel-body">
-            <h4><Link to="/create">Add Race</Link></h4>
+            <h4><Link to="/createrace">Add Race</Link></h4>
             <table class="table table-stripe">
               <thead>
                 <tr>
@@ -62,15 +62,16 @@ class App extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.races.map(board =>
+                {this.state.races.map(race =>
                   <tr>
-                    <td><Link to={`/show/${board.key}`}>{board.name}</Link></td>
-                    <td>{board.mission}</td>
-                    <td>{board.course}</td>
-                    <td>{board.schedule}</td>
-                    <td>{board.timing}</td>
-                    <td>{board.address}</td>
-                    <td>{board.restrooms}</td>
+                    <td><Link to={`/showrace/${race.key}`}>{race.name}</Link></td>
+                    <td>{race.name}</td>
+                    <td>{race.mission}</td>
+                    <td>{race.course}</td>
+                    <td>{race.schedule}</td>
+                    <td>{race.timing}</td>
+                    <td>{race.address}</td>
+                    <td>{race.restrooms}</td>
                   </tr>
                 )}
               </tbody>
